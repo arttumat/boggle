@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { shuffle } from "./helpers";
+import { useState } from "react";
 
-function App() {
+const App = () => {
+  const DICE = [
+    ["V", "I", "L", "L", "E", "V"],
+    ["O", "I", "T", "T", "A", "A"],
+    ["A", "I", "N", "A", "S", "T"],
+    ["A", "N", "P", "F", "S", "K"],
+    ["A", "P", "H", "S", "K", "O"],
+    ["D", "E", "S", "R", "I", "L"],
+    ["E", "I", "E", "N", "U", "S"],
+    ["H", "I", "K", "N", "M", "U"],
+    ["A", "G", "A", "Ä", "L", "Ä"],
+    ["C", "I", "O", "T", "M", "U"],
+    ["A", "J", "T", "O", "T", "O"],
+    ["E", "I", "T", "O", "S", "S"],
+    ["E", "L", "Y", "T", "T", "R"],
+    ["A", "K", "I", "T", "M", "V"],
+    ["A", "I", "L", "K", "V", "Y"],
+    ["A", "L", "R", "N", "N", "U"],
+  ];
+
+  const [dice, setDice] = useState(shuffle(DICE));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h3>BOGGLE</h3>
+      <div className="game-board">
+        {dice.map((die) => (
+          <div className="die">{shuffle(die)[0]}</div>
+        ))}
+      </div>
+      <button onClick={() => setDice(shuffle(DICE))}>Shuffle</button>
+    </>
   );
-}
+};
 
 export default App;
