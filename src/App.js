@@ -24,6 +24,10 @@ const App = () => {
 
   const [dice, setDice] = useState(shuffle(DICE));
 
+  const shuffleDice = () => {
+    setDice(shuffle(DICE));
+  };
+
   return (
     <>
       <h3>BOGGLE</h3>
@@ -32,7 +36,7 @@ const App = () => {
           <div className="die">{shuffle(die)[0]}</div>
         ))}
       </div>
-      <button onClick={() => setDice(shuffle(DICE))}>Shuffle</button>
+      <button onClick={shuffleDice}>Shuffle</button>
     </>
   );
 };
