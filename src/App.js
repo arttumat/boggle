@@ -1,6 +1,6 @@
 import "./App.css";
 import { shuffle } from "./helpers";
-import { useState } from "react";
+import { React, useState } from "react";
 
 const App = () => {
   const DICE = [
@@ -36,7 +36,7 @@ const App = () => {
           <div className="die">{shuffle(die)[0]}</div>
         ))}
       </div>
-      <button onClick={shuffleDice}>Shuffle</button>
+      <button onClick={() => shuffleDice()}>Shuffle</button>
     </>
   );
 };
