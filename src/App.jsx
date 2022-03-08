@@ -2,6 +2,7 @@ import "./App.css";
 import { shuffle, shuffleArray } from "./helpers";
 import React, { useState } from "react";
 import logo from "./logo.png";
+import CountDownTimer from "./Timer";
 
 const App = () => {
   const DICE = [
@@ -24,6 +25,7 @@ const App = () => {
   ];
 
   const [dice, setDice] = useState(shuffle(DICE));
+  const [isTimerOn, toggle] = useState(false);
 
   function shuffleDice() {
     setDice([...shuffleArray(DICE)]);
@@ -40,6 +42,14 @@ const App = () => {
         ))}
       </div>
       <Button handler={shuffleDice}>Sekoita</Button>
+      {isTimerOn ? (
+        <CountDownTimer
+          hoursMinSecs={{ hours: 0, minutes: 2, seconds: 30 }}
+          onComplete={() => toggle(false)}
+        />
+      ) : (
+        <button onClick={() => toggle(true)}>Aloita</button>
+      )}
     </>
   );
 };
