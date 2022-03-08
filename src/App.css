@@ -34,6 +34,11 @@ h3 {
   background-color: #666699;
   margin-bottom: 20px;
 }
+.app-logo {
+  width: 243px;
+  height: 100px;
+  margin: 20px 0;
+}
 
 .game-board .die {
   width: 100%;

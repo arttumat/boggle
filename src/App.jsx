@@ -1,6 +1,7 @@
 import "./App.css";
-import { shuffle } from "./helpers";
+import { shuffle, shuffleArray } from "./helpers";
 import React, { useState } from "react";
+import logo from "./logo.png";
 
 const App = () => {
   const DICE = [
@@ -24,21 +25,27 @@ const App = () => {
 
   const [dice, setDice] = useState(shuffle(DICE));
 
-  const shuffleDice = () => {
-    setDice(shuffle(DICE));
-  };
+  function shuffleDice() {
+    setDice([...shuffleArray(DICE)]);
+  }
 
   return (
     <>
-      <h3>BOGGLE</h3>
+      <img src={logo} className="app-logo" alt="logo" />
       <div className="game-board">
-        {dice.map((die) => (
-          <div className="die">{shuffle(die)[0]}</div>
+        {dice.map((die, index) => (
+          <div key={index} className="die">
+            {shuffle(die)[0]}
+          </div>
         ))}
       </div>
-      <button onClick={() => shuffleDice()}>Shuffle</button>
+      <Button handler={shuffleDice}>Sekoita</Button>
     </>
   );
+};
+
+const Button = ({ handler }) => {
+  return <button onClick={handler}>Sekoita</button>;
 };
 
 export default App;
