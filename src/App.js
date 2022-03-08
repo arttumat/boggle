@@ -1,6 +1,6 @@
 import "./App.css";
 import { shuffle } from "./helpers";
-import { React, useState } from "react";
+import React, { useState } from "react";
 
 const App = () => {
   const DICE = [
