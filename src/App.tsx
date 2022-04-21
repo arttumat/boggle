@@ -38,22 +38,11 @@ const App = () => {
           </div>
         ))}
       </div>
-      <Button handler={shuffleDice} activeLanguage={activeLanguage} />
+      <button onClick={shuffleDice}>
+        {activeLanguage === "fi" ? "Sekoita" : "Shuffle"}
+      </button>
       <CountdownTimerContainer activeLanguage={activeLanguage} />
     </>
-  );
-};
-
-interface ButtonProps {
-  handler: () => void;
-  activeLanguage: string;
-}
-
-const Button = ({ handler, activeLanguage }: ButtonProps) => {
-  return (
-    <button onClick={handler}>
-      {activeLanguage === "fi" ? "Sekoita" : "Shuffle"}
-    </button>
   );
 };
 
