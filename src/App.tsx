@@ -30,7 +30,6 @@ const App = () => {
         clickHandler={langSelect}
         activeLanguage={activeLanguage}
       />
-      <img src={"logo.png"} className="app-logo" alt="logo" />
       <div className="game-board">
         {dice.map((die: string[], index: number) => (
           <div key={index} className="die">
