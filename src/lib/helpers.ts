@@ -1,4 +1,4 @@
-export const shuffle = (array) => {
+export const shuffle = (array: Array<any>) => {
   let currentIndex = array.length,
     randomIndex;
 
@@ -18,7 +18,7 @@ export const shuffle = (array) => {
   return array;
 };
 
-export const shuffleArray = (array) => {
+export const shuffleArray = (array: Array<any>) => {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     const temp = array[i];

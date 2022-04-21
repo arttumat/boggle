@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-const CountDownTimer = ({ hoursMinSecs }) => {
+interface CountDownProps {
+  hoursMinSecs: { hours: number; minutes: number; seconds: number };
+  onComplete: () => void;
+}
+
+const CountDownTimer = ({ hoursMinSecs, onComplete }: CountDownProps) => {
   const { hours = 0, minutes = 0, seconds = 60 } = hoursMinSecs;
   const [[hrs, mins, secs], setTime] = useState([hours, minutes, seconds]);
 
@@ -16,8 +21,8 @@ const CountDownTimer = ({ hoursMinSecs }) => {
   };
 
   const reset = () => {
-    setTime([parseInt(hours), parseInt(minutes), parseInt(seconds)]);
-    alert("Time is up!");
+    setTime([hours, minutes, seconds]);
+    onComplete();
   };
 
   useEffect(() => {
@@ -27,7 +32,7 @@ const CountDownTimer = ({ hoursMinSecs }) => {
 
   return (
     <div>
-      <p>{`${hrs.toString().padStart(2, "0")}:${mins
+      <p className="timer">{`${hrs.toString().padStart(2, "0")}:${mins
         .toString()
         .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`}</p>
     </div>

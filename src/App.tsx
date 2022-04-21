@@ -1,11 +1,10 @@
-import "./App.css";
-import { shuffle, shuffleArray } from "./helpers";
 import React, { useState } from "react";
-import logo from "./logo.png";
-import CountDownTimer from "./Timer";
+import "./App.css";
+import CountdownTimerContainer from "./components/TimerContainer";
+import { shuffle, shuffleArray } from "./lib/helpers";
 
 const App = () => {
-  const DICE = [
+  const DICE: string[][] = [
     ["V", "I", "L", "L", "E", "V"],
     ["O", "I", "T", "T", "A", "A"],
     ["A", "I", "N", "A", "S", "T"],
@@ -33,28 +32,26 @@ const App = () => {
 
   return (
     <>
-      <img src={logo} className="app-logo" alt="logo" />
+      <img src={"logo.png"} className="app-logo" alt="logo" />
       <div className="game-board">
-        {dice.map((die, index) => (
+        {dice.map((die: string[], index: number) => (
           <div key={index} className="die">
             {shuffle(die)[0]}
           </div>
         ))}
       </div>
       <Button handler={shuffleDice}>Sekoita</Button>
-      {isTimerOn ? (
-        <CountDownTimer
-          hoursMinSecs={{ hours: 0, minutes: 2, seconds: 30 }}
-          onComplete={() => toggle(false)}
-        />
-      ) : (
-        <button onClick={() => toggle(true)}>Aloita</button>
-      )}
+      <CountdownTimerContainer />
     </>
   );
 };
 
-const Button = ({ handler }) => {
+interface ButtonProps {
+  handler: () => void;
+  children: React.ReactNode;
+}
+
+const Button = ({ handler }: ButtonProps) => {
   return <button onClick={handler}>Sekoita</button>;
 };
 
