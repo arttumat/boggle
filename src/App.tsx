@@ -10,7 +10,12 @@ const App = () => {
   const [activeLanguage, setActiveLanguage] = useState("fi");
 
   function shuffleDice() {
-    setDice([...shuffleArray(DICE_FINNISH)]);
+    if (activeLanguage === "fi") {
+      setDice([...shuffleArray(DICE_FINNISH)]);
+    }
+    if (activeLanguage === "en") {
+      setDice([...shuffleArray(DICE_ENGLISH)]);
+    }
   }
 
   function langSelect(lang: string) {
