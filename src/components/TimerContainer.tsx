@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import CountDownTimer from "./Timer";
 
-const CountdownTimerContainer = () => {
+interface CountdownTimerContainerProps {
+  activeLanguage: string;
+}
+
+const CountdownTimerContainer = ({
+  activeLanguage,
+}: CountdownTimerContainerProps) => {
   const [isTimerOn, toggle] = useState(false);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
@@ -28,7 +34,9 @@ const CountdownTimerContainer = () => {
           onComplete={() => timerEnd()}
         />
       ) : (
-        <button onClick={() => timerStart()}>Aloita</button>
+        <button onClick={() => timerStart()}>
+          {activeLanguage === "fi" ? "Aloita" : "Start"}
+        </button>
       )}
     </>
   );

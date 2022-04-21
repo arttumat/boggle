@@ -1,37 +1,35 @@
 import React, { useState } from "react";
 import "./App.css";
+import { LanguageSelect } from "./components/LanguageSelect";
 import CountdownTimerContainer from "./components/TimerContainer";
+import { DICE_ENGLISH, DICE_FINNISH } from "./lib/dice";
 import { shuffle, shuffleArray } from "./lib/helpers";
 
 const App = () => {
-  const DICE: string[][] = [
-    ["V", "I", "L", "L", "E", "V"],
-    ["O", "I", "T", "T", "A", "A"],
-    ["A", "I", "N", "A", "S", "T"],
-    ["A", "N", "P", "F", "S", "K"],
-    ["A", "P", "H", "S", "K", "O"],
-    ["D", "E", "S", "R", "I", "L"],
-    ["E", "I", "E", "N", "U", "S"],
-    ["H", "I", "K", "N", "M", "U"],
-    ["A", "G", "A", "Ä", "L", "Ä"],
-    ["C", "I", "O", "T", "M", "U"],
-    ["A", "J", "T", "O", "T", "O"],
-    ["E", "I", "T", "O", "S", "S"],
-    ["E", "L", "Y", "T", "T", "R"],
-    ["A", "K", "I", "T", "M", "V"],
-    ["A", "I", "L", "K", "V", "Y"],
-    ["A", "L", "R", "N", "N", "U"],
-  ];
-
-  const [dice, setDice] = useState(shuffle(DICE));
-  const [isTimerOn, toggle] = useState(false);
+  const [dice, setDice] = useState(shuffle(DICE_FINNISH));
+  const [activeLanguage, setActiveLanguage] = useState("fi");
 
   function shuffleDice() {
-    setDice([...shuffleArray(DICE)]);
+    setDice([...shuffleArray(DICE_FINNISH)]);
+  }
+
+  function langSelect(lang: string) {
+    if (lang === "fi") {
+      setDice(shuffle(DICE_FINNISH));
+      setActiveLanguage(lang);
+    }
+    if (lang === "en") {
+      setDice(shuffle(DICE_ENGLISH));
+      setActiveLanguage(lang);
+    }
   }
 
   return (
     <>
+      <LanguageSelect
+        clickHandler={langSelect}
+        activeLanguage={activeLanguage}
+      />
       <img src={"logo.png"} className="app-logo" alt="logo" />
       <div className="game-board">
         {dice.map((die: string[], index: number) => (
@@ -40,19 +38,23 @@ const App = () => {
           </div>
         ))}
       </div>
-      <Button handler={shuffleDice}>Sekoita</Button>
-      <CountdownTimerContainer />
+      <Button handler={shuffleDice} activeLanguage={activeLanguage} />
+      <CountdownTimerContainer activeLanguage={activeLanguage} />
     </>
   );
 };
 
 interface ButtonProps {
   handler: () => void;
-  children: React.ReactNode;
+  activeLanguage: string;
 }
 
-const Button = ({ handler }: ButtonProps) => {
-  return <button onClick={handler}>Sekoita</button>;
+const Button = ({ handler, activeLanguage }: ButtonProps) => {
+  return (
+    <button onClick={handler}>
+      {activeLanguage === "fi" ? "Sekoita" : "Shuffle"}
+    </button>
+  );
 };
 
 export default App;
