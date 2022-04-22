@@ -26,13 +26,22 @@ const CountdownTimerContainer = ({
     toggle(false);
   }
 
+  function timerStop() {
+    toggle(false);
+  }
+
   return (
     <>
       {isTimerOn ? (
-        <CountDownTimer
-          hoursMinSecs={{ hours: 0, minutes: 2, seconds: 0 }}
-          onComplete={() => timerEnd()}
-        />
+        <>
+          <CountDownTimer
+            hoursMinSecs={{ hours: 0, minutes: 2, seconds: 0 }}
+            onComplete={() => timerEnd()}
+          />
+          <button onClick={() => timerStop()}>
+            {activeLanguage === "fi" ? "Pysäytä" : "Stop"}
+          </button>
+        </>
       ) : (
         <button onClick={() => timerStart()}>
           {activeLanguage === "fi" ? "Aloita" : "Start"}
