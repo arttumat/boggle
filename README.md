@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# Boggle board with finnish and english dice
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ea5bf5a4-a3ce-4615-ba50-999c2632dab0/deploy-status)](https://app.netlify.com/sites/boggle-suomi/deploys)
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
