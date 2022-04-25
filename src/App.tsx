@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import "./App.css";
+import { Board } from "./components/Board";
 import { LanguageSelect } from "./components/LanguageSelect";
 import CountdownTimerContainer from "./components/TimerContainer";
+import { useAppDispatch, useAppSelector } from "./hooks";
 import { DICE_ENGLISH, DICE_FINNISH } from "./lib/dice";
 import { shuffle, shuffleArray } from "./lib/helpers";
+import { selectLang, setLang } from "./reducers/languageSlice";
 
 const App = () => {
   const [dice, setDice] = useState(shuffle(DICE_FINNISH));
-  const [activeLanguage, setActiveLanguage] = useState("fi");
+  const dispatch = useAppDispatch();
+  const activeLang = useAppSelector(selectLang);
 
   function shuffleDice() {
-    if (activeLanguage === "fi") {
+    if (activeLang === "fi") {
       setDice([...shuffleArray(DICE_FINNISH)]);
     }
-    if (activeLanguage === "en") {
+    if (activeLang === "en") {
       setDice([...shuffleArray(DICE_ENGLISH)]);
     }
   }
@@ -21,31 +25,23 @@ const App = () => {
   function langSelect(lang: string) {
     if (lang === "fi") {
       setDice(shuffle(DICE_FINNISH));
-      setActiveLanguage(lang);
     }
     if (lang === "en") {
       setDice(shuffle(DICE_ENGLISH));
-      setActiveLanguage(lang);
     }
+    dispatch(setLang(lang));
   }
 
   return (
     <>
-      <LanguageSelect
-        clickHandler={langSelect}
-        activeLanguage={activeLanguage}
-      />
-      <div className="game-board">
-        {dice.map((die: string[], index: number) => (
-          <div key={index} className="die">
-            {shuffle(die)[0]}
-          </div>
-        ))}
+      <LanguageSelect clickHandler={langSelect} />
+      <Board dice={dice} />
+      <div className="button-container">
+        <button onClick={shuffleDice}>
+          {activeLang === "fi" ? "Sekoita" : "Shuffle"}
+        </button>
       </div>
-      <button onClick={shuffleDice}>
-        {activeLanguage === "fi" ? "Sekoita" : "Shuffle"}
-      </button>
-      <CountdownTimerContainer activeLanguage={activeLanguage} />
+      <CountdownTimerContainer />
     </>
   );
 };

@@ -1,20 +1,22 @@
 import React from "react";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { selectDirection, toggleRandomize } from "../reducers/directionSlice";
+import { selectLang } from "../reducers/languageSlice";
 
 interface LanguageSelectProps {
   clickHandler: (language: string) => void;
-  activeLanguage: string;
 }
 
-export const LanguageSelect = ({
-  clickHandler,
-  activeLanguage,
-}: LanguageSelectProps) => {
+export const LanguageSelect = ({ clickHandler }: LanguageSelectProps) => {
+  const randomize = useAppSelector(selectDirection);
+  const activeLang = useAppSelector(selectLang);
+  const dispatch = useAppDispatch();
   return (
     <div className="language-select">
       <div className="language-select__options">
         <div className="language-select__option">
           <button
-            className={activeLanguage === "fi" ? "active" : "inactive"}
+            className={activeLang === "fi" ? "active" : "inactive"}
             onClick={() => clickHandler("fi")}
           >
             FI
@@ -22,10 +24,18 @@ export const LanguageSelect = ({
         </div>
         <div className="language-select__option">
           <button
-            className={activeLanguage === "en" ? "active" : "inactive"}
+            className={activeLang === "en" ? "active" : "inactive"}
             onClick={() => clickHandler("en")}
           >
             EN
+          </button>
+        </div>
+        <div className="language-select__option">
+          <button
+            className={randomize ? "active" : "inactive"}
+            onClick={() => dispatch(toggleRandomize())}
+          >
+            {randomize ? "Random" : "Normal"}
           </button>
         </div>
       </div>

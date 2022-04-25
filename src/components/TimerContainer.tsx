@@ -1,15 +1,12 @@
 import React, { useState } from "react";
+import { useAppSelector } from "../hooks";
+import { selectLang } from "../reducers/languageSlice";
 import CountDownTimer from "./Timer";
 
-interface CountdownTimerContainerProps {
-  activeLanguage: string;
-}
-
-const CountdownTimerContainer = ({
-  activeLanguage,
-}: CountdownTimerContainerProps) => {
+const CountdownTimerContainer = () => {
   const [isTimerOn, toggle] = useState(false);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const activeLang = useAppSelector(selectLang);
 
   function timerStart() {
     // iOS browsers require a user interaction to play audio
@@ -39,12 +36,12 @@ const CountdownTimerContainer = ({
             onComplete={() => timerEnd()}
           />
           <button onClick={() => timerStop()}>
-            {activeLanguage === "fi" ? "Pysäytä" : "Stop"}
+            {activeLang === "fi" ? "Pysäytä" : "Stop"}
           </button>
         </>
       ) : (
         <button onClick={() => timerStart()}>
-          {activeLanguage === "fi" ? "Aloita" : "Start"}
+          {activeLang === "fi" ? "Aloita" : "Start"}
         </button>
       )}
     </>

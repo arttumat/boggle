@@ -164,3 +164,19 @@ button {
   background-color: #ddd;
   color: #000;
 }
+
+.die.left {
+  transform: rotate(90deg);
+}
+
+.die.right {
+  transform: rotate(-90deg);
+}
+
+.die.top {
+  transform: rotate(180deg);
+}
+
+.die.bottom {
+  transform: rotate(0deg);
+}
