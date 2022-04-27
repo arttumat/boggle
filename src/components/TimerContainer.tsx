@@ -34,10 +34,8 @@ const CountdownTimerContainer = () => {
           <CountDownTimer
             hoursMinSecs={{ hours: 0, minutes: 2, seconds: 0 }}
             onComplete={() => timerEnd()}
+            stopTimer={() => timerStop()}
           />
-          <button onClick={() => timerStop()}>
-            {activeLang === "fi" ? "Pysäytä" : "Stop"}
-          </button>
         </>
       ) : (
         <button onClick={() => timerStart()}>

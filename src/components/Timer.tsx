@@ -3,9 +3,14 @@ import React, { useEffect, useState } from "react";
 interface CountDownProps {
   hoursMinSecs: { hours: number; minutes: number; seconds: number };
   onComplete: () => void;
+  stopTimer: () => void;
 }
 
-const CountDownTimer = ({ hoursMinSecs, onComplete }: CountDownProps) => {
+const CountDownTimer = ({
+  hoursMinSecs,
+  onComplete,
+  stopTimer,
+}: CountDownProps) => {
   const { hours = 0, minutes = 0, seconds = 60 } = hoursMinSecs;
   const [[hrs, mins, secs], setTime] = useState([hours, minutes, seconds]);
 
@@ -32,9 +37,12 @@ const CountDownTimer = ({ hoursMinSecs, onComplete }: CountDownProps) => {
 
   return (
     <div>
-      <p className="timer">{`${hrs.toString().padStart(2, "0")}:${mins
-        .toString()
-        .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`}</p>
+      <p className="timer" onClick={stopTimer}>
+        {`${hrs.toString().padStart(2, "0")}:${mins
+          .toString()
+          .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`}{" "}
+        ■
+      </p>
     </div>
   );
 };

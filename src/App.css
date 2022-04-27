@@ -1,10 +1,23 @@
+:root {
+  --color-primary: #f5f5f5;
+  --color-secondary: #fff;
+  --color-accent: #000;
+  --color-accent-light: #ff6044;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: #666699;
+  background: #f5f5f5;
 }
 
 h3 {
@@ -17,11 +30,17 @@ h3 {
     width: 380px;
     height: 380px;
   }
+  .language-select__options {
+    margin: 2rem 16px;
+  }
 }
 @media screen and (min-width: 401px) {
   .game-board {
     width: 400px;
     height: 400px;
+  }
+  .language-select__options {
+    margin: 2rem 0;
   }
 }
 
@@ -31,8 +50,11 @@ h3 {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
   grid-gap: 5px;
-  background-color: #666699;
-  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  margin-bottom: 2rem;
+  padding: 16px;
+  box-shadow: #ddd 6px 6px 19px;
+  border-radius: 5px;
 }
 .app-logo {
   width: 243px;
@@ -46,103 +68,67 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
-  border: 1px solid #000;
+  background-color: var(--color-secondary);
   font-size: 2rem;
   font-weight: 700;
   border-radius: 5px;
 }
 
 button {
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  border: 1px solid #000;
-  margin-bottom: 5px;
-  font-size: 2rem;
-  font-weight: 700;
+  min-width: 50%;
+  background-color: var(--color-accent);
+  color: var(--color-secondary);
+  border: none;
+  margin-bottom: 1rem;
   border-radius: 5px;
+  height: 4rem;
+  font-size: 1.2rem;
+  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: rgba(0, 0, 0, 0.25) 0 4px 8px;
   cursor: pointer;
+}
+
+button:hover {
+  box-shadow: rgba(0, 0, 0, 0.65) 0 6px 14px;
+}
+
+.vertical-divider {
+  border-left: 1px solid #dddeee;
+  height: 3rem;
 }
 
 .timer {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 600;
+  background: var(--color-accent-light);
+  border-radius: 5px;
+  width: 50%;
+  height: 4rem;
+  margin: 0 auto;
+  cursor: pointer;
   color: #fff;
   margin-bottom: 20px;
-}
-
-.language-select {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  margin: 20px 0;
-}
-.language-select .language-select__title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 10px;
 }
 
-.language-select .language-select__options {
+.language-select__options {
   display: flex;
   flex-direction: row;
   gap: 1rem;
   align-items: center;
-  justify-content: center;
 }
 
-.language-select .language-select__options .language-select__option {
-  font-size: 1.5rem;
-  font-weight: 700;
+.language-select__options .language-select__option {
+  font-size: 1.2rem;
   color: #fff;
-  margin-bottom: 10px;
+  width: 33%;
 }
 
-.language-select .language-select__options .language-select__option button {
-  appearance: none;
-  background-color: #000000;
-  border: 2px solid #1a1a1a;
-  border-radius: 15px;
-  box-sizing: border-box;
-  color: #ffffff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 16px;
-  font-weight: 600;
-  line-height: normal;
+.language-select__option button {
   margin: 0;
-  min-height: 60px;
-  min-width: 0;
-  outline: none;
-  padding: 16px 24px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
   width: 100%;
-  will-change: transform;
-}
-
-.language-select
-  .language-select__options
-  .language-select__option
-  button:disabled {
-  pointer-events: none;
-}
-
-.language-select
-  .language-select__options
-  .language-select__option
-  button:hover {
-  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-  transform: translateY(-2px);
 }
 
 .language-select
@@ -153,16 +139,22 @@ button {
   transform: translateY(0);
 }
 
-.language-select .language-select__options .language-select__option .active {
-  font-weight: 700;
-  background-color: aquamarine;
+.language-select__option .active {
+  background-color: var(--color-accent-light);
+  box-shadow: none;
   color: #000;
 }
 
-.language-select .language-select__options .language-select__option .inactive {
-  font-weight: 700;
-  background-color: #ddd;
+.language-select__option .inactive {
+  background-color: var(--color-secondary);
+  box-shadow: none;
   color: #000;
+}
+
+.active:hover,
+.inactive:hover {
+  box-shadow: none;
+  transform: none;
 }
 
 .die.left {
