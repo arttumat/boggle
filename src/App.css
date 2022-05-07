@@ -11,6 +11,14 @@
   box-sizing: border-box;
 }
 
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem auto;
+  gap: 0.5rem;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -124,6 +132,10 @@ button:hover {
   font-size: 1.2rem;
   color: #fff;
   width: 33%;
+}
+
+.old-new-select .language-select__options .language-select__option {
+  width: 50%;
 }
 
 .language-select__option button {

@@ -1,3 +1,4 @@
+import { FaHourglassStart } from "@react-icons/all-files/fa/FaHourglassStart";
 import React, { useState } from "react";
 import { useAppSelector } from "../hooks";
 import { selectLang } from "../reducers/languageSlice";
@@ -40,6 +41,7 @@ const CountdownTimerContainer = () => {
       ) : (
         <button onClick={() => timerStart()}>
           {activeLang === "fi" ? "Aloita" : "Start"}
+          <FaHourglassStart />
         </button>
       )}
     </>
