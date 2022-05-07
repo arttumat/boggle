@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import directionSlice from "./reducers/directionSlice";
 import languageSlice from "./reducers/languageSlice";
+import versionSlice from "./reducers/versionSlice";
 
 export const store = configureStore({
   reducer: {
     direction: directionSlice,
     language: languageSlice,
+    version: versionSlice,
   },
 });
 
