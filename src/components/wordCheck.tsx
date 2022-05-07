@@ -10,6 +10,7 @@ export const WordCheck = () => {
   function checkWord(word: string) {
     setIsWord(null);
     axios.get(`/.netlify/functions/wordCheck?word=${word}`).then((res) => {
+      console.log(res);
       if (res.data === "true") {
         setIsWord(true);
       }
