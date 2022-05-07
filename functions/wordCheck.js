@@ -4,6 +4,6 @@ exports.handler = async (event, context) => {
 
   return {
     statusCode: 200,
-    body: words.includes(word),
+    body: words.includes(word) ? "true" : "false",
   };
 };
