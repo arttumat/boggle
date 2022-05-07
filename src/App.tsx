@@ -4,6 +4,7 @@ import "./App.css";
 import { Board } from "./components/Board";
 import { Options } from "./components/Options";
 import CountdownTimerContainer from "./components/TimerContainer";
+import { WordCheck } from "./components/wordCheck";
 import { useAppDispatch, useAppSelector } from "./hooks";
 import {
   DICE_ENGLISH,
@@ -65,6 +66,7 @@ const App = () => {
         </button>
       </div>
       <CountdownTimerContainer />
+      {activeLang === "fi" ? <WordCheck /> : null}
     </>
   );
 };
