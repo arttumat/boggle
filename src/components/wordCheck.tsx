@@ -10,11 +10,10 @@ export const WordCheck = () => {
   function checkWord(word: string) {
     setIsWord(null);
     axios.get(`/.netlify/functions/wordCheck?word=${word}`).then((res) => {
-      console.log(res);
-      if (res.data === "true") {
+      console.log(res.data);
+      if (res.data === true) {
         setIsWord(true);
-      }
-      if (res.data === "false") {
+      } else {
         setIsWord(false);
       }
     });
@@ -37,8 +36,13 @@ export const WordCheck = () => {
           type="text"
           placeholder="Tarkista sana"
         />
-        {isWord !== null && isWord && <FcOk className="icon" />}
-        {isWord !== null && !isWord && <FcHighPriority className="icon" />}
+        {isWord !== null ? (
+          isWord ? (
+            <FcOk className="icon" />
+          ) : (
+            <FcHighPriority className="icon" />
+          )
+        ) : null}
       </div>
       <button disabled={input === ""} onClick={() => checkWord(input)}>
         Tarkista
