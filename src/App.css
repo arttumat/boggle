@@ -82,6 +82,10 @@ h3 {
   border-radius: 5px;
 }
 
+.word-check {
+  display: flex;
+}
+
 .input-row {
   display: flex;
   flex-direction: row;
@@ -92,9 +96,22 @@ h3 {
   align-items: center;
 }
 
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.button-container button {
+  width: 100%;
+}
+
 .word-check__input {
   width: 80%;
-  height: 3.8rem;
+  height: 4rem;
+  margin: 0.5rem auto 0;
   border: none;
   border-radius: 5px;
   padding: 0.5rem;
@@ -144,12 +161,10 @@ button:hover {
   font-weight: 600;
   background: var(--color-accent-light);
   border-radius: 5px;
-  width: 50%;
   height: 4rem;
-  margin: 0 auto;
+  margin: 1.5rem auto 0;
   cursor: pointer;
   color: #fff;
-  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;

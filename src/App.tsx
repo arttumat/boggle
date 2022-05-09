@@ -18,16 +18,24 @@ import { selectVer } from "./reducers/versionSlice";
 
 const App = () => {
   const [dice, setDice] = useState(shuffle(DICE_FINNISH));
+  const activeLang = useAppSelector(selectLang);
   const version = useAppSelector(selectVer);
   const dispatch = useAppDispatch();
-  const activeLang = useAppSelector(selectLang);
 
   function shuffleDice() {
     if (activeLang === "fi") {
-      setDice([...shuffleArray(DICE_FINNISH)]);
+      if (version === "old") {
+        setDice([...shuffleArray(DICE_FINNISH)]);
+      } else {
+        setDice([...shuffleArray(DICE_FINNISH_NEW)]);
+      }
     }
     if (activeLang === "en") {
-      setDice([...shuffleArray(DICE_ENGLISH)]);
+      if (version === "old") {
+        setDice([...shuffleArray(DICE_ENGLISH)]);
+      } else {
+        setDice([...shuffleArray(DICE_ENGLISH_NEW)]);
+      }
     }
   }
 
@@ -64,8 +72,8 @@ const App = () => {
           {activeLang === "fi" ? "Sekoita" : "Shuffle"}
           <FaDice />
         </button>
+        <CountdownTimerContainer />
       </div>
-      <CountdownTimerContainer />
       {activeLang === "fi" ? <WordCheck /> : null}
     </>
   );
