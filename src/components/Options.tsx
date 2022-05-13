@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import { selectLang } from "../reducers/languageSlice";
 import { selectVer, setVer } from "../reducers/versionSlice";
 import { LanguageSelect } from "./LanguageSelect";
+import { Scoring } from "./Scoring";
 
 const customStyles = {
   content: {
@@ -86,6 +87,7 @@ export const Options = ({ langSelect }: OptionsProps) => {
             </div>
           </div>
         </div>
+        <Scoring />
         <button onClick={closeModal}>
           {currentLang === "fi" ? "Sulje" : "Close"}
         </button>
